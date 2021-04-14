@@ -1,0 +1,14 @@
+builds:
+  - skip: true
+
+release:
+  extra_files:
+    - glob: ./build/*.alfredworkflow
+  draft: true
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
