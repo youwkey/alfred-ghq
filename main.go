@@ -18,7 +18,8 @@ var (
 	ErrPathNotExec   = errors.New("path not exec")
 )
 
-func checkExec(path string) error {
+// CheckExec check path is executable file.
+func CheckExec(path string) error {
 	if path == "" {
 		return ErrPathEmpty
 	} else if f, err := os.Stat(path); err != nil {
@@ -34,7 +35,7 @@ func main() {
 	sf := alfred.ScriptFilter{}
 	ghqPath := os.Getenv("GHQ_PATH")
 
-	if err := checkExec(ghqPath); err != nil {
+	if err := CheckExec(ghqPath); err != nil {
 		item := alfred.NewInvalidItem("Error").Subtitle(err.Error())
 		sf.Items().Append(item)
 		_ = sf.Output()
