@@ -5,6 +5,7 @@ linters:
     - interfacer # deprecated
     - maligned # deprecated
     - golint # deprecated
+    - paralleltest
 linters-settings:
   varnamelen:
     min-name-length: 1
