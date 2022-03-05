@@ -13,8 +13,7 @@ all: build copy-build-assets package-workflow
 mod:
 	go mod tidy
 
-check:
-	test lint
+check: test lint
 
 test:
 	gotestsum --format=short-verbose -- -race
