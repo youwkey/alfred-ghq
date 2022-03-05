@@ -1,0 +1,17 @@
+linters:
+  enable-all: true
+  disable:
+    - scopelint # deprecated
+    - interfacer # deprecated
+    - maligned # deprecated
+    - golint # deprecated
+    - paralleltest
+linters-settings:
+  varnamelen:
+    min-name-length: 1
+  gosec:
+    excludes:
+      - G204 # Subprocess launched with variable
+
+issues:
+  exclude-use-default: false
