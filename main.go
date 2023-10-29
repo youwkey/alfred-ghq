@@ -72,11 +72,11 @@ func main() {
 		absPath := repo.AbsPath()
 		repoURL := repo.URL()
 		modCmd := alfred.NewModifier().Arg(absPath).Subtitle("Browse in Terminal").Icon(alfred.IconExecutableBinary)
-		modAlt := alfred.NewModifier().Arg(repoURL).Subtitle("Open in Finder").Icon(alfred.IconFinder)
+		modAlt := alfred.NewModifier().Arg(absPath).Subtitle("Open in Finder").Icon(alfred.IconFinder)
 		item := alfred.
 			NewItem(v).
 			UID(v).
-			Arg(absPath).
+			Arg(repoURL).
 			Match(repo.MatchValue()).
 			Type(alfred.ItemTypeFile).
 			Mods(alfred.NewModifiers().Cmd(modCmd).Alt(modAlt)).
