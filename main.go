@@ -36,6 +36,19 @@ func CheckExec(path string) error {
 	return nil
 }
 
+func getIcon(host string) *alfred.Icon {
+	path := "./assets/repo.svg"
+
+	switch host {
+	case "github.com":
+		path = "./assets/github.svg"
+	case "bitbucket.org":
+		path = "./assets/bitbucket.svg"
+	}
+
+	return alfred.NewIcon(path)
+}
+
 func main() {
 	sf := alfred.ScriptFilter{}
 	ghqPath := os.Getenv("GHQ_PATH")
@@ -71,16 +84,16 @@ func main() {
 	for _, v := range strings.Fields(string(bytes)) {
 		absPath := filepath.Join(ghqRoot, v)
 		repoURL := "https://" + v
-		modCtrl := alfred.NewModifier().Arg(absPath).Subtitle("Browse in Terminal").Icon(alfred.IconExecutableBinary)
-		modAlt := alfred.NewModifier().Arg(repoURL).Subtitle("Open URL").Icon(alfred.IconBookmark)
+		modCmd := alfred.NewModifier().Arg(absPath).Subtitle("Browse in Terminal").Icon(alfred.IconExecutableBinary)
+		modAlt := alfred.NewModifier().Arg(repoURL).Subtitle("Open in Finder").Icon(alfred.IconFinder)
 		item := alfred.
 			NewItem(v).
 			UID(v).
 			Arg(absPath).
 			Match(strings.Join(strings.Split(v, "/"), " ")).
 			Type(alfred.ItemTypeFile).
-			Mods(alfred.NewModifiers().Ctrl(modCtrl).Alt(modAlt)).
-			Icon(alfred.NewIconWithType(absPath, alfred.IconTypeFileIcon)).
+			Mods(alfred.NewModifiers().Cmd(modCmd).Alt(modAlt)).
+			Icon(getIcon(strings.Split(v, "/")[0])).
 			QuicklookURL(repoURL)
 
 		sf.Items().Append(item)
