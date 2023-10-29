@@ -8,7 +8,7 @@ GOLANGCLI_VERSION := 1.55.0
 
 .PHONY: all mod test lint fix copy-build-assets package-workflow clean tools
 
-all: build copy-build-assets package-workflow
+all: clean build copy-build-assets package-workflow
 
 mod:
 	go mod tidy
@@ -29,7 +29,7 @@ build: mod
 	CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -o $(DIST_DIR)/$(EXEC_BIN)-arm64
 
 copy-build-assets:
-	cp info.plist icon.png $(DIST_DIR)
+	cp -r info.plist icon.png assets $(DIST_DIR)
 
 package-workflow:
 	cd $(DIST_DIR) && zip -r $(PACKAGE_NAME) ./

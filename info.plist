@@ -10,7 +10,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>D9305CDD-C96B-44E8-A2EA-F1905A22609E</string>
+				<string>04FF94A9-5346-41BA-A519-2A6C10576CEB</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -20,9 +20,9 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>AC8A5E9A-30A3-4B8C-9C28-9D5287AA6B31</string>
+				<string>D9305CDD-C96B-44E8-A2EA-F1905A22609E</string>
 				<key>modifiers</key>
-				<integer>262144</integer>
+				<integer>524288</integer>
 				<key>modifiersubtext</key>
 				<string></string>
 				<key>vitoclose</key>
@@ -30,9 +30,9 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>04FF94A9-5346-41BA-A519-2A6C10576CEB</string>
+				<string>AC8A5E9A-30A3-4B8C-9C28-9D5287AA6B31</string>
 				<key>modifiers</key>
-				<integer>524288</integer>
+				<integer>1048576</integer>
 				<key>modifiersubtext</key>
 				<string></string>
 				<key>vitoclose</key>
@@ -47,9 +47,30 @@
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>Repository Suggest From ghq</string>
+	<string>Repository Suggest From GHQ</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>04FF94A9-5346-41BA-A519-2A6C10576CEB</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -132,25 +153,6 @@ fi
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>browser</key>
-				<string></string>
-				<key>spaces</key>
-				<string></string>
-				<key>url</key>
-				<string>{query}</string>
-				<key>utf8</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
-			<key>uid</key>
-			<string>04FF94A9-5346-41BA-A519-2A6C10576CEB</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -159,46 +161,81 @@ fi
 		<key>04FF94A9-5346-41BA-A519-2A6C10576CEB</key>
 		<dict>
 			<key>xpos</key>
-			<integer>410</integer>
+			<real>405</real>
 			<key>ypos</key>
-			<integer>620</integer>
+			<real>175</real>
 		</dict>
 		<key>AC8A5E9A-30A3-4B8C-9C28-9D5287AA6B31</key>
 		<dict>
 			<key>xpos</key>
-			<integer>410</integer>
+			<real>405</real>
 			<key>ypos</key>
-			<integer>475</integer>
+			<real>475</real>
 		</dict>
 		<key>D9305CDD-C96B-44E8-A2EA-F1905A22609E</key>
 		<dict>
 			<key>xpos</key>
-			<integer>410</integer>
+			<real>405</real>
 			<key>ypos</key>
-			<integer>325</integer>
+			<real>325</real>
 		</dict>
 		<key>E43F5A5B-E437-4F9C-9F02-AD495F9B35F0</key>
 		<dict>
 			<key>xpos</key>
-			<integer>150</integer>
+			<real>150</real>
 			<key>ypos</key>
-			<integer>325</integer>
+			<real>325</real>
 		</dict>
 	</dict>
-	<key>variables</key>
-	<dict>
-		<key>GHQ_PATH</key>
-		<string></string>
-		<key>GHQ_ROOT</key>
-		<string></string>
-	</dict>
-	<key>variablesdontexport</key>
+	<key>userconfigurationconfig</key>
 	<array>
-		<string>GHQ_ROOT</string>
-		<string>GHQ_PATH</string>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>/opt/homebrew/bin/ghq</string>
+				<key>filtermode</key>
+				<integer>2</integer>
+				<key>placeholder</key>
+				<string>/opt/homebrew/bin/ghq</string>
+				<key>required</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>path of ghq command</string>
+			<key>type</key>
+			<string>filepicker</string>
+			<key>variable</key>
+			<string>GHQ_PATH</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>~/ghq</string>
+				<key>filtermode</key>
+				<integer>1</integer>
+				<key>placeholder</key>
+				<string>~/ghq</string>
+				<key>required</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>path of ghq root</string>
+			<key>type</key>
+			<string>filepicker</string>
+			<key>variable</key>
+			<string>GHQ_ROOT</string>
+		</dict>
 	</array>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string></string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/youwkey</string>
 </dict>
