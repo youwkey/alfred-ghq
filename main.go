@@ -82,6 +82,7 @@ func main() {
 	}
 
 	for _, v := range strings.Fields(string(bytes)) {
+		repo := NewGHQRepo(ghqRoot, v)
 		absPath := filepath.Join(ghqRoot, v)
 		repoURL := "https://" + v
 		modCmd := alfred.NewModifier().Arg(absPath).Subtitle("Browse in Terminal").Icon(alfred.IconExecutableBinary)
@@ -90,7 +91,7 @@ func main() {
 			NewItem(v).
 			UID(v).
 			Arg(absPath).
-			Match(strings.Join(strings.Split(v, "/"), " ")).
+			Match(repo.MatchValue()).
 			Type(alfred.ItemTypeFile).
 			Mods(alfred.NewModifiers().Cmd(modCmd).Alt(modAlt)).
 			Icon(getIcon(strings.Split(v, "/")[0])).
