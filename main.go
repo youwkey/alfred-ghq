@@ -74,7 +74,8 @@ func main() {
 		modCmd := alfred.NewModifier().Arg(absPath).Subtitle("Browse in Terminal").Icon(alfred.IconExecutableBinary)
 		modAlt := alfred.NewModifier().Arg(absPath).Subtitle("Open in Finder").Icon(alfred.IconFinder)
 		item := alfred.
-			NewItem(v).
+			NewItem(repo.Name).
+			Subtitle(repo.RepoPath).
 			UID(v).
 			Arg(repoURL).
 			Match(repo.MatchValue()).
