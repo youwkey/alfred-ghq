@@ -5,8 +5,11 @@
 package main
 
 import (
+	"path/filepath"
 	"regexp"
 	"strings"
+
+	"github.com/youwkey/alfred-go"
 )
 
 var reg = regexp.MustCompile(`([0-9]+)`)
@@ -15,26 +18,55 @@ var reg = regexp.MustCompile(`([0-9]+)`)
 type GHQRepo struct {
 	RootPath string
 	RepoPath string
+	Host     string
+	User     string
+	Name     string
 }
 
 // NewGHQRepo returns a new initialized NewGHQRepo.
 func NewGHQRepo(rootPath, repoPath string) *GHQRepo {
+	elems := strings.Split(repoPath, "/")
+
 	return &GHQRepo{
 		RootPath: rootPath,
 		RepoPath: repoPath,
+		Host:     elems[0],
+		User:     elems[1],
+		Name:     elems[2],
 	}
 }
 
-// MatchValue returns alfred match string.
-func (g GHQRepo) MatchValue() string {
-	var others []string
+// AbsPath returns an absolute filepath.
+func (g *GHQRepo) AbsPath() string {
+	return filepath.Join(g.RootPath, g.RepoPath)
+}
 
-	elems := strings.Split(g.RepoPath, "/")
-	host, user, name := elems[0], elems[1], elems[2]
+// URL returns a repository url.
+func (g *GHQRepo) URL() string {
+	return "https://" + g.RepoPath
+}
 
-	if reg.MatchString(name) {
-		others = append(others, reg.FindAllString(name, -1)...)
+// Icon return a repository icon.
+func (g *GHQRepo) Icon() *alfred.Icon {
+	path := "./assets/repo.svg"
+
+	switch g.Host {
+	case "github.com":
+		path = "./assets/github.svg"
+	case "bitbucket.org":
+		path = "./assets/bitbucket.svg"
 	}
 
-	return strings.Join(append([]string{host, user, name}, others...), " ")
+	return alfred.NewIcon(path)
+}
+
+// MatchValue returns alfred match string.
+func (g *GHQRepo) MatchValue() string {
+	var others []string
+
+	if reg.MatchString(g.Name) {
+		others = append(others, reg.FindAllString(g.Name, -1)...)
+	}
+
+	return strings.Join(append([]string{g.Host, g.User, g.Name}, others...), " ")
 }
