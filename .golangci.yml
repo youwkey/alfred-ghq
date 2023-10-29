@@ -5,7 +5,13 @@ linters:
     - interfacer # deprecated
     - maligned # deprecated
     - golint # deprecated
-    - paralleltest
+    - deadcode #deprecated
+    - nosnakecase #deprecated
+    - structcheck #deprecated
+    - varcheck #deprecated
+    - exhaustivestruct #deprecated
+    - ifshort #deprecated
+    - depguard
 linters-settings:
   varnamelen:
     min-name-length: 1

@@ -3,8 +3,8 @@ EXEC_BIN := "alfred-ghq"
 DIST_DIR := "build"
 
 # Dependency tool versions
-GOTESTSUM_VERSION := 1.7.0
-GOLANGCLI_VERSION := 1.44.2
+GOTESTSUM_VERSION := 1.11.0
+GOLANGCLI_VERSION := 1.55.0
 
 .PHONY: all mod test lint fix copy-build-assets package-workflow clean tools
 
