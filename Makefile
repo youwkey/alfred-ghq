@@ -35,7 +35,7 @@ package-workflow:
 	cd $(DIST_DIR) && zip -r $(PACKAGE_NAME) ./
 
 clean:
-	rm -r $(DIST_DIR)
+	rm -rf $(DIST_DIR)
 
 tools:
 	go install gotest.tools/gotestsum@v$(GOTESTSUM_VERSION)
